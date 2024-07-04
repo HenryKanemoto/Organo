@@ -1,0 +1,23 @@
+.alternar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 50px;
+}
+
+.alternar h2 {
+    color: #6278f7;
+    font-size: 32px;
+    border-bottom: 6px solid #6278f7;
+    padding-bottom: 28px;
+}
+
+.alternar__icon {
+    position: absolute;
+    right: 0px;
+    background-color: #6278f7;
+    padding: 10px;
+    border-radius: 999%;
+    cursor: pointer;
+}

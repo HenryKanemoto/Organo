@@ -4,6 +4,7 @@ import Formulario from './components/Formulario';
 import Times from './components/Times';
 import Rodape from './components/rodape';
 import { v4 as uuidv4 } from 'uuid';
+import AlternarTabela from './components/AlternarTabela';
 
 function App() {
 
@@ -45,16 +46,9 @@ function App() {
     }
   ])
 
-  const inicial = [{
-    id: uuidv4(),
-    nome: 'Henry',
-    cargo: 'Aluno',
-    imagem: '',
-    time: times[5].nome,
-    favorito: false
-  }]
+  const [ativaState, setAtivaState] = useState(true)
 
-  const [colaboradores, setColaboradores] = useState(inicial);
+  const [colaboradores, setColaboradores] = useState([]);
   const aoNovoColaboradorAdicionado = (colaborador) => {
     setColaboradores([...colaboradores, colaborador])
   }
@@ -83,10 +77,20 @@ function App() {
     }))
   }
 
+  function tabelaAtiva() {
+      setAtivaState(!ativaState)
+  }
+
   return (
     <div className="App">
       <Banner />
-      <Formulario cadastrarTime={cadastrarTime} times={times.map(time => time.nome)} aoColaboradorCadastrado={colaborador => aoNovoColaboradorAdicionado(colaborador)} />
+      {ativaState
+      ?
+        <Formulario cadastrarTime={cadastrarTime} times={times.map(time => time.nome)} aoColaboradorCadastrado={colaborador => aoNovoColaboradorAdicionado(colaborador)} />
+      : ''
+      }
+
+      <AlternarTabela tabelaAtiva={tabelaAtiva}/>
       {times.map(time =>
         <Times
           mudarCor={mudarCorTime}
